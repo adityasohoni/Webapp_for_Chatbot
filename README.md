@@ -1,4 +1,4 @@
-# FaceRecognitionFlask
+# Web App for the NITK Chatbot
  
 First, use pip to install requirements.txt (in your virtual environment)
 ```
