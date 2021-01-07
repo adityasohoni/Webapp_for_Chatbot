@@ -5,7 +5,7 @@ First, use pip to install requirements.txt (in your virtual environment)
 pip install -r requirements.txt
 ```
 
-To run : 
+To run (run all commands on separate terminal shells): 
 In your chatbot directory
 ```
 rasa run --model models/ --endpoints endpoints.yml --port 5002 --credentials credentials.yml
