@@ -1,6 +1,9 @@
 # FaceRecognitionFlask
  
-First, use pip to install requirements.txt
+First, use pip to install requirements.txt (in your virtual environment)
+```
+pip install -r requirements.txt
+```
 
 To run : 
 In your chatbot directory
