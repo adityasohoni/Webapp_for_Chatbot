@@ -516,9 +516,15 @@ body, html {
     <div class="messages" id="chat">
 
       {% for key,value in result%}
+      {% if key == 'pic' %}
+      <div class="message stark">
+        <img src="{{value}}">
+        </div>
+      {% else %}
         <div class="{{key}}">
         {{value}}
         </div>
+      {% endif %}  
       {% endfor %}
     </div>
     <div class="input">
