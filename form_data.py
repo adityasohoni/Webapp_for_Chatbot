@@ -72,9 +72,13 @@ def Result():
                 print("Bot says, ")
                 output.extend([("message parker",result)])
                 for i in r.json():
-                    bot_message = i['text']
-                    print(f"{i['text']}")
-                    output.extend([("message stark",bot_message)])
+                    if 'text' in i: # if responce contains text
+                        bot_message = i['text']
+                        print(f"{i['text']}")
+                        output.extend([("message stark",bot_message)])
+                    elif 'image' in i: # if responce contains image
+                        image_link = i['image']
+                        output.extend([("pic",image_link)])    
             except:
                 output.extend([("message parker", result), ("message stark", "We are unable to process your request at the moment. Please try again...")])
 
