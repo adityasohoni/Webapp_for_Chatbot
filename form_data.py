@@ -7,9 +7,49 @@ import base64,cv2
 
 app=Flask(__name__)
 output=[]#("message stark","hi")]
+# coordinates of NITK Surathkal
+lat = 13.001864136351472
+lng = 74.80495038765815
+
+def getCoordinates(text):
+    firstWord = text.split()[0]
+    
+    # coordinates of NITK Surathkal
+    lat = 13.001864136351472
+    lng = 74.80495038765815
+    
+    if(firstWord == 'Mudrika'):
+        lat = 13.008641224563956
+        lng = 74.79418828368352
+    if( firstWord == 'MainBuilding'):
+        lat = 13.06961353476527 
+        lng =  74.78629159322206
+    if( firstWord == 'OceanPearl'):
+        lat = 13.02267735427792
+        lng =  74.79054242887052
+    if( firstWord == 'Yennar'):
+        lat = 13.018314457068078
+        lng = 74.81208948121525
+    if( firstWord == 'Health'):
+        lat = 13.125330866265447
+        lng = 74.8011031535809
+    if( firstWord == 'Sports'):
+        lat = 12.975494928028214
+        lng = 74.82307580884962
+    if( firstWord == 'SBIBank'):
+        lat = 13.077179226201334
+        lng = 74.76814417067781
+    if( firstWord == 'CCC'):
+        lat = 13.066477583824591
+        lng = 74.78462366212935
+    if( firstWord == 'Central'):
+        lat = 13.082529873304695
+        lng = 74.79011682594653
+    
+    return lat,lng
 @app.route('/')
 def home_page():
-    return render_template("IY_Home_page.html",result=output)
+    return render_template("IY_Home_page.html",result=output,latitude = lat, longitude = lng)
 @app.route('/about')
 def about_page():
     return render_template("about.html",result=output)
@@ -71,6 +111,7 @@ def Result():
                 r = requests.post('http://localhost:5002/webhooks/rest/webhook', json={"message": result})
                 print("Bot says, ")
                 output.extend([("message parker",result)])
+                lat,lng = getCoordinates(r.json()[0]['text'])
                 for i in r.json():
                     bot_message = i['text']
                     print(f"{i['text']}")
@@ -79,7 +120,7 @@ def Result():
                 output.extend([("message parker", result), ("message stark", "We are unable to process your request at the moment. Please try again...")])
 
         print(output)
-        return render_template("IY_Home_page.html",result=output)
+        return render_template("IY_Home_page.html",result=output,latitude=lat,longitude = lng)
 
 if __name__=="__main__":
     app.run(debug=True)#,host="192.168.43.161")
