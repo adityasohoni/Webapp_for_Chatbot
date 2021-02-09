@@ -320,7 +320,7 @@ body, html {
   flex-shrink: 0;
   margin: 1rem;
   box-sizing: border-box;
-  align-items: left: ;;
+  align-items: left ;
 }
 .chat .messages {
   padding: 1rem;
@@ -463,6 +463,36 @@ body, html {
 .pic.rogers {
   background-image: url("https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/7/7c/Cap.America_%28We_Don%27t_Trade_Lives_Vision%29.png");
 }
+
+.top-header{
+  display: flex;
+  margin: 10px 0px 10px 0px;
+}
+
+.name-seen-container{
+  margin: auto auto auto 20px;
+}
+
+.name {
+  font-size: 1.2rem;
+  color: #111;
+}
+
+.seen {
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.about{
+  margin: auto 20px auto auto;
+}
+
+.about-button{
+  font-size: 1.2rem;
+  padding: 10px 20px 10px 20px;
+  background-color: whitesmoke;
+}
+
 </style>
 </head>
 <img>
@@ -495,36 +525,41 @@ body, html {
 
 
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
 <input type="image" src="https://cdn2.iconfinder.com/data/icons/ios7-inspired-mac-icon-set/1024/messages_5122x.png" class="open-button" onload="openForm()" onclick="openForm()"  />
 <div class="chat-popup" id="myForm">
-    <form  id="chat-data" action="/result" method="POST">
-    
-        <div class="chat">
-    <div class="contact bar">
-      <div class="pic stark"></div>
-      <div class="name">
-        NITK chatbot &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <!--<a href="javascript:void(0)" class="closebtn" onclick="closeChat()">×</a>-->
-      </div>
-
-      <div class="seen">
-        Online
-
-      </div>
-    </div>
-    <div class="messages" id="chat">
-
-      {% for key,value in result%}
-        <div class="{{key}}">
-        {{value}}
+  <form  id="chat-data" action="/result" method="POST">
+    <div class="chat">
+      <div class="top-header">
+        <div class="pic stark"></div>
+        <div class="name-seen-container">
+          <div class="name">
+            NITK chatbot
+            <!--<a href="javascript:void(0)" class="closebtn" onclick="closeChat()">×</a>-->
+          </div>
+          <div class="seen">
+            Online
+          </div>
         </div>
-      {% endfor %}
+        <a class="about" href="{{ url_for('about_page') }}" target="_top">
+          <button type="button" class="about-button">
+            About
+          </button>
+        </a>
+      </div>
+      <div class="messages" id="chat">
+
+        {% for key,value in result%}
+        <div class="{{key}}">
+          {{value}}
+        </div>
+        {% endfor %}
+
+      </div>
+      <div class="input">
+        <i class="fas fa-camera"></i><i class="far fa-laugh-beam"></i><input placeholder="Type your message here!" type="text" name="msg" /><button type="button" id="out" onclick="loadDoc()">send</button><i class="fas fa-microphone"></i>
+      </div>
     </div>
-    <div class="input">
-      <i class="fas fa-camera"></i><i class="far fa-laugh-beam"></i><input placeholder="Type your message here!" type="text" name="msg" /><button type="button" id="out" onclick="loadDoc()">send</button><i class="fas fa-microphone"></i>
-    </div>
-  </div>
   </form>
 </div>
 
@@ -545,7 +580,6 @@ function closeNav() {
 }
 function closeChat() {
   document.getElementById("myForm").style.display = "none";
-<!--  document.getElementById("main").style.marginLeft= "0";-->
 }
 
 function openForm() {
@@ -579,7 +613,7 @@ function refreshMessages() {
     type: 'GET',
     dataType: 'html',
     success: function(data) {
-      $('#chat').html(data); // data came back ok, so display it                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              $('#chat').html(data); // data came back ok, so display it
+      $('#chat').html(data); // data came back ok, so display it
     },
     error: function() {
       $('#chat').prepend('Error retrieving new messages..');

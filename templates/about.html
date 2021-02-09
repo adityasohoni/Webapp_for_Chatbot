@@ -13,13 +13,20 @@ body {
 }
 
 .container {
-  padding: 64px;
+  padding: 2px 16px;
+  margin : 10px;
 }
 
 .row:after {
   content: "";
   display: table;
   clear: both
+}
+
+.column-100 {
+  float: left;
+  width: 100%;
+  padding: 20px;
 }
 
 .column-66 {
@@ -57,9 +64,22 @@ img {
   max-width: 100%;
 }
 
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 50%;
+  text-align: center;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
 @media screen and (max-width: 1000px) {
+  .card,
+  .column-33,
   .column-66,
-  .column-33 {
+  .column-100 {
     width: 100%;
     text-align: center;
   }
@@ -71,55 +91,90 @@ img {
 </head>
 <body>
 
-<div style="text-align:center">
-  <h2>Exclusive Smartphone</h2>
-  <p>Resize the browser window to see the effect.</p>
-</div>
-
 <!-- The App Section -->
 <div class="container">
   <div class="row">
     <div class="column-66">
-      <h1 class="xlarge-font"><b>The App</b></h1>
-      <h1 class="large-font" style="color:MediumSeaGreen;"><b>Why buy it?</b></h1>
-      <p><span style="font-size:36px">Take photos like a pro.</span> You should buy this app because lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <button class="button">Download Application</button>
-    </div>
-    <div class="column-33">
-        <img src="https://www.w3schools.com/w3images/img_app.jpg" width="335" height="471">
+      <h1 class="xlarge-font">
+        <b>NITK ChatBot</b>
+      </h1>
+      <h1 class="large-font" style="color:MediumSeaGreen;">
+        <b>What is it?</b>
+      </h1>
+      <p> The NITK ChatBot is a Virtual Assistant to guide you through out NITK.</p>
+      <a class="about" href="{{ url_for('home_page') }}" target="_top">
+        <button class="button">Open ChatBot</button>
+      </a>
     </div>
   </div>
 </div>
 
-<!-- Clarity Section -->
-<div class="container" style="background-color:#f1f1f1">
+<!-- Features -->
+<div class="container" style="background-color:#f1f1f1;">
   <div class="row">
-    <div class="column-33">
-      <img src="https://www.w3schools.com/w3images/app5.jpg" alt="App" width="335" height="471">
-    </div>
     <div class="column-66">
-      <h1 class="xlarge-font"><b>Clarity</b></h1>
-      <h1 class="large-font" style="color:red;"><b>Pixels, who?</b></h1>
-      <p><span style="font-size:24px">A revolution in resolution.</span> Sharp and clear photos with the world's best photo engine, incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquipex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-      <button class="button" style="background-color:red">Read More</button>
+      <h1 class="large-font" style="color:red;">
+        <b>How does it work ?</b>
+      </h1>
+      <p>You can ask the bot about various Facilities available in and around NITK</p>
+      <a class="about" href="{{ url_for('home_page') }}" target="_top">
+        <button class="button">Try It Out</button>
+      </a>
     </div>
   </div>
 </div>
 
-<!-- The App Section -->
+<!-- Developers -->
 <div class="container">
   <div class="row">
-    <div class="column-66">
-      <h1 class="xlarge-font"><b>The App</b></h1>
-      <h1 class="large-font" style="color:MediumSeaGreen;"><b>Why buy it?</b></h1>
-      <p><span style="font-size:36px">Take photos like a pro.</span> You should buy this app because lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-      <button class="button">Download Application</button>
-    </div>
-    <div class="column-33">
-        <img src="https://www.w3schools.com/w3images/img_app.jpg" width="335" height="471" >
+    <div class="column-100">
+      <h1 class="large-font" style="color:MediumSeaGreen;">
+        <b>Team</b>
+      </h1>
+      <div style="display: flex;">
+        <div class="card">
+          <div class="container">
+            <h4><b>Aditya</b></h4> 
+            <p>Architect & Engineer</p> 
+          </div>
+        </div>
+        <div class="card">
+          <div class="container">
+            <h4><b>Shruthan</b></h4> 
+            <p>Architect & Engineer</p> 
+          </div>
+        </div>
+      </div>
+      <div style="display: flex;">
+        <div class="card">
+          <div class="container">
+            <h4><b>Varun</b></h4> 
+            <p>Architect & Engineer</p> 
+          </div>
+        </div>
+        <div class="card">
+          <div class="container">
+            <h4><b>Rakshit</b></h4> 
+            <p>Architect & Engineer</p> 
+          </div>
+        </div>
+      </div>
+      <div style="display: flex;">
+        <div class="card">
+          <div class="container">
+            <h4><b>Pratham Nayak</b></h4> 
+            <p>Architect & Engineer</p> 
+          </div>
+        </div>
+        <div class="card">
+          <div class="container">
+            <h4><b>Dharmik</b></h4> 
+            <p>Architect & Engineer</p> 
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
 </body>
 </html>
