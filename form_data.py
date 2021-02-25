@@ -5,7 +5,7 @@ import base64,cv2
 
 
 app=Flask(__name__)
-output=[]#("message stark","hi")]
+output=[]
 
 lat = []
 lng = []
@@ -62,13 +62,13 @@ def Result():
             try:
                 r = requests.post('http://localhost:5002/webhooks/rest/webhook', json={"message": result})
                 print("Bot says, ")
-                output.extend([("message parker",result)])
+                output.extend([("message user",result)])
 
                 for i in r.json():
                     if('custom' in i):
                         bot_message = i['custom']['text']
                         print(f"{i['custom']['text']}")
-                        output.extend([("message stark",bot_message)])
+                        output.extend([("message bot",bot_message)])
 
                         getCoordinates(i['custom']['title'])
 
@@ -77,14 +77,14 @@ def Result():
                         if('text' in i):
                             bot_message = i['text']
                             print(f"{i['text']}")
-                            output.extend([("message stark",bot_message)])
+                            output.extend([("message bot",bot_message)])
                         if('image' in i):
                             image_link = i['image']
                             output.extend([("image",image_link)]) 
 
                    
             except:
-                output.extend([("message parker", result), ("message stark", "We are unable to process your request at the moment. Please try again...")])
+                output.extend([("message user", result), ("message bot", "We are unable to process your request at the moment. Please try again...")])
         print(lat) 
         print(output)
         return render_template("IY_Home_page.html",result=output,latitude=lat[-1],longitude = lng[-1])
