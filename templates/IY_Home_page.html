@@ -1,534 +1,207 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-    <title>NITK CHATBOT</title>
+
+  <head>
+
+    <title>
+      NITK CHATBOT
+    </title>
+
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" >
-<style>
-body {
-  font-family: "Lato", sans-serif;
-}
-
-.sidebar {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 40px;
-}
-
-.sidebar a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 16px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidebar a:hover {
-  color: #f1f1f1;
-}
-
-.sidebar .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-.openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  background-color: #111;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-}
-
-.openbtn:hover {
-  background-color: #444;
-}
-
-#main {
-  transition: margin-left .5s;
-  padding: 8px;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .sidebar {padding-top: 15px;}
-  .sidebar a {font-size: 18px;}
-}
-body, html {
-  height: 100%;
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.hero-image {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://www.w3schools.com/howto/photographer.jpg");
-  height: 50%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-}
-
-.hero-text {
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-}
-
-.hero-text button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 10px 25px;
-  color: black;
-  background-color: #ddd;
-  text-align: center;
-  cursor: pointer;
-}
-
-.hero-text button:hover {
-  background-color: #555;
-  color: white;
-}
-
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
-
-/* Button used to open the chat form - fixed at the bottom of the page */
-.open-button {
-  background-color: #30f;
-  color: white;
-  padding: 16px 20px;
-  border-radius: 50%;
-  cursor: pointer;
-  opacity: 0.8;
-  position: fixed;
-  bottom: 23px;
-  right: 28px;
-  height:80px;
-  width: 80px;
-}
-.circle {
-  height: 50px;
-  width: 50px;
-  background-color: #555;
-  border-radius: 50%;
-}
-/* The popup chat - hidden by default */
-.chat-popup {
-  display: flex;
-  /*position: fixed;*/
-  /*align-items: center;
-  width:100%;
-  height:100%;
-  top:0px;
-  left:0px;
-  z-index:1000;*/
-  bottom: 0;
-  right: 15px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
   
+    <style>
 
-}
-
-/* Add styles to the form container */
-.form-container {
-  max-width: 610px;
-  padding: 10px;
-  background-color: white;
-}
-
-/* Full-width textarea */
-.form-container textarea {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
-  resize: none;
-  min-height: 200px;
-}
-
-/* When the textarea gets focus, do something */
-.form-container textarea:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
-/* Set a style for the submit/send button */
-.form-container .btn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
-}
-
-/* Add a red background color to the cancel button */
-.form-container .cancel {
-  background-color: red;
-}
-
-/* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-  opacity: 1;
-}
-
-@import url("https://fonts.googleapis.com/css?family=Red+Hat+Display:400,500,900&display=swap");
-body, html {
-  font-family: Red hat Display, sans-serif;
-  font-weight: 400;
-  line-height: 1.25em;
-  letter-spacing: 0.025em;
-  color: #333;
-  background: #F7F7F7;
-}
-
-.center {
-  position: absolute;
-  top: 50%;
-  left: calc(50% + 12rem);
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-}
-
-.pic {
-  width: 4rem;
-  height: 4rem;
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-}
-
-.contact {
-  position: relative;
-  margin-bottom: 1rem;
-  padding-left: 5rem;
-  height: 4.5rem;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
-  -webkit-box-pack: center;
-          justify-content: center;
-}
-.contact .pic {
-  position: absolute;
-  left: 0;
-}
-.contact .name {
-  font-weight: 500;
-  margin-bottom: 0.125rem;
-}
-.contact .message, .contact .seen {
-  font-size: 0.9rem;
-  color: #999;
-}
-.contact .badge {
-  box-sizing: border-box;
-  position: absolute;
-  width: 1.5rem;
-  height: 1.5rem;
-  text-align: center;
-  font-size: 0.9rem;
-  padding-top: 0.125rem;
-  border-radius: 1rem;
-  top: 0;
-  left: 2.5rem;
-  background: #333;
-  color: white;
-}
-
-.contacts {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  -webkit-transform: translate(-6rem, -50%);
-          transform: translate(-6rem, -50%);
-  width: 24rem;
-  height: 32rem;
-  padding: 1rem 2rem 1rem 1rem;
-  box-sizing: border-box;
-  border-radius: 1rem 0 0 1rem;
-  cursor: pointer;
-  background: white;
-  box-shadow: 0 0 8rem 0 rgba(0, 0, 0, 0.1), 2rem 2rem 4rem -3rem rgba(0, 0, 0, 0.5);
-  -webkit-transition: -webkit-transform 500ms;
-  transition: -webkit-transform 500ms;
-  transition: transform 500ms;
-  transition: transform 500ms, -webkit-transform 500ms;
-}
-.contacts h2 {
-  margin: 0.5rem 0 1.5rem 5rem;
-}
-.contacts .fa-bars {
-  position: absolute;
-  left: 2.25rem;
-  color: #999;
-  -webkit-transition: color 200ms;
-  transition: color 200ms;
-}
-.contacts .fa-bars:hover {
-  color: #666;
-}
-.contacts .contact:last-child {
-  margin: 0;
-}
-.contacts:hover {
-  -webkit-transform: translate(-23rem, -50%);
-          transform: translate(-23rem, -50%);
-}
-
-.chat {
-  position: relative;
-  display: -webkit-box;
-  display: flex;
-  flex-direction: column-reverse;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-          justify-content: space-between;
-  /*width:24rem;
-  height: 38rem;
-  z-index:2;*/
-  width: 100%;
-  height: 43rem;
-  /*overflow: auto;*/
-  z-index: 10000;
-  padding: 2%;
-  box-sizing: border-box;
-  border-radius: 1rem;
-  background: white;
-  box-shadow: 0 0 8rem 0 rgba(0, 0, 0, 0.1), 0rem 2rem 4rem -3rem rgba(0, 0, 0, 0.5);
-}
-.chat .contact.bar {
-  flex-basis: 3.5rem;
-  flex-shrink: 0;
-  margin: 1rem;
-  box-sizing: border-box;
-  /*align-items: left: ;;*/
-}
-.chat .messages {
-  padding: 1rem;
-  background: #F7F7F7;
-  flex-shrink: 2;
-  overflow-y: auto;
-  box-shadow: inset 0 2rem 2rem -2rem rgba(0, 0, 0, 0.05), inset 0 -2rem 2rem -2rem rgba(0, 0, 0, 0.05);
-}
-.chat .messages .time {
-  font-size: 0.8rem;
-  background: #EEE;
-  padding: 0.25rem 1rem;
-  border-radius: 2rem;
-  color: #999;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin: 0 auto;
-}
-.chat .messages .message {
-  box-sizing: border-box;
-  padding: 0.5rem 1rem;
-  margin: 1rem;
-  background: #FFF;
-  border-radius: 1.125rem 1.125rem 1.125rem 0;
-  min-height: 2.25rem;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  max-width: 66%;
-  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.075), 0rem 1rem 1rem -1rem rgba(0, 0, 0, 0.1);
-}
-.chat .messages .message.parker {
-  margin: 1rem 1rem 1rem auto;
-  border-radius: 1.125rem 1.125rem 0 1.125rem;
-  background: #333;
-  color: white;
-}
-.chat .messages .message .typing {
-  display: inline-block;
-  width: 0.8rem;
-  height: 0.8rem;
-  margin-right: 0rem;
-  box-sizing: border-box;
-  background: #ccc;
-  border-radius: 50%;
-}
-.chat .messages .message .typing.typing-1 {
-  -webkit-animation: typing 3s infinite;
-          animation: typing 3s infinite;
-}
-.chat .messages .message .typing.typing-2 {
-  -webkit-animation: typing 3s 250ms infinite;
-          animation: typing 3s 250ms infinite;
-}
-.chat .messages .message .typing.typing-3 {
-  -webkit-animation: typing 3s 500ms infinite;
-          animation: typing 3s 500ms infinite;
-}
-.chat .input {
-  box-sizing: border-box;
-  flex-basis: 4rem;
-  flex-shrink: 0;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-          align-items: center;
-  padding: 0 0.5rem 0 1.5rem;
-}
-.chat .input i {
-  font-size: 1.5rem;
-  margin-right: 1rem;
-  color: #666;
-  cursor: pointer;
-  -webkit-transition: color 200ms;
-  transition: color 200ms;
-}
-.chat .input i:hover {
-  color: #333;
-}
-.chat .input input {
-  border: none;
-  background-image: none;
-  background-color: white;
-  padding: 0.5rem 1rem;
-  margin-right: 1rem;
-  border-radius: 1.125rem;
-  -webkit-box-flex: 2;
-          flex-grow: 2;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1), 0rem 1rem 1rem -1rem rgba(0, 0, 0, 0.2);
-  font-family: Red hat Display, sans-serif;
-  font-weight: 400;
-  letter-spacing: 0.025em;
-}
-.chat .input input:placeholder {
-  color: #999;
-}
-
-@-webkit-keyframes typing {
-  0%, 75%, 100% {
-    -webkit-transform: translate(0, 0.25rem) scale(0.9);
-            transform: translate(0, 0.25rem) scale(0.9);
-    opacity: 0.5;
-  }
-  25% {
-    -webkit-transform: translate(0, -0.25rem) scale(1);
-            transform: translate(0, -0.25rem) scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes typing {
-  0%, 75%, 100% {
-    -webkit-transform: translate(0, 0.25rem) scale(0.9);
-            transform: translate(0, 0.25rem) scale(0.9);
-    opacity: 0.5;
-  }
-  25% {
-    -webkit-transform: translate(0, -0.25rem) scale(1);
-            transform: translate(0, -0.25rem) scale(1);
-    opacity: 1;
-  }
-}
-.pic.stark {
-  background-image: url('data:image/jpeg;base64,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');
-}
-
-.pic.banner {
-  background-image: url("https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/4/4f/BruceHulk-Endgame-TravelingCapInPast.jpg");
-}
-
-.pic.thor {
-  background-image: url("https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/9/98/ThorFliesThroughTheAnus.jpg");
-}
-
-.pic.danvers {
-  background-image: url("https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/0/05/HeyPeterParker.png");
-}
-
-.pic.rogers {
-  background-image: url("https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/7/7c/Cap.America_%28We_Don%27t_Trade_Lives_Vision%29.png");
-}
-#wrap{
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    border: 15px;
-}
-#map {
-        height: 300px;
-        /* The height is 400 pixels */
-        width: 100%;
-        /* The width is the width of the web page */
-        clear: both;
+      *{
+        box-sizing: border-box;
       }
 
+      body, html {
+        margin: 0;
+        height: 100%;
+      } 
 
-#myForm{
-   
-   /*clear: both;*/
-}
-</style>
-</head>
-<img>
-<!--
-<div id="mySidebar" class="sidebar">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-  <a href="about">About</a>
-   <a href="#">Tutorials</a> 
-  <a href="#">Gallery</a>
-  <a href="charts">Tutorials</a>
-  <a href="contact">Contact</a>
-   <a href="video_feed">Webcam</a> 
+      .chat-popup {
+        display: flex;
+        bottom: 0;
+        right: 15px;
+        border: 3px solid #f1f1f1;
+        z-index: 9;
+      }
 
+      @import url("https://fonts.googleapis.com/css?family=Red+Hat+Display:400,500,900&display=swap");
+      body, html {
+        font-family: Red hat Display, sans-serif;
+        font-weight: 400;
+        line-height: 1.25em;
+        letter-spacing: 0.025em;
+        color: #333;
+        background: #F7F7F7;
+      }
+      .pic {
+        width: 4rem;
+        height: 4rem;
+        background-size: cover;
+        background-position: center;
+        border-radius: 50%;
+      }
+      .chat {
+        position: relative;
+        display: -webkit-box;
+        display: flex;
+        flex-direction: column-reverse;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-direction: column;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        width: 100%;
+        height: 43rem;
+        z-index: 10000;
+        padding: 2%;
+        box-sizing: border-box;
+        border-radius: 1rem;
+        background: white;
+        box-shadow: 0 0 8rem 0 rgba(0, 0, 0, 0.1), 0rem 2rem 4rem -3rem rgba(0, 0, 0, 0.5);
+      }
+      .chat .messages {
+        height: 100%;
+        background: #F7F7F7;
+        overflow-y: auto;
+        overflow-wrap: break-word;
+        box-shadow: inset 0 2rem 2rem -2rem rgba(0, 0, 0, 0.05), inset 0 -2rem 2rem -2rem rgba(0, 0, 0, 0.05);
+      }
+      .chat .messages .message{
+        box-sizing: border-box;
+        padding: 0.5rem 1rem;
+        margin: 1rem;
+        min-height: 2.25rem;
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+        max-width: 66%;
+        box-shadow: 0 0 2rem rgba(0, 0, 0, 0.075), 0rem 1rem 1rem -1rem rgba(0, 0, 0, 0.1);
+      }
+      .chat .messages .message.bot {
+        margin: 1rem auto 1rem 1rem;
+        border-radius: 1.125rem 1.125rem 1.125rem 0;
+        background: #FFF;
+        color: #333;
+      }
+      .chat .messages .message.user {
+        margin: 1rem 1rem 1rem auto;
+        border-radius: 1.125rem 1.125rem 0 1.125rem;
+        background: #333;
+        color: white;
+      }
 
+      .chat .input {
+        box-sizing: border-box;
+        flex-basis: 4rem;
+        flex-shrink: 0;
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        padding: 1.5rem 0 1.5rem 0;
+      }
+      .chat .input input {
+        border: none;
+        background-image: none;
+        background-color: white;
+        padding: 0.5rem 1rem;
+        margin-right: 1rem;
+        border-radius: 1.125rem;
+        -webkit-box-flex: 2;
+        flex-grow: 2;
+        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1), 0rem 1rem 1rem -1rem rgba(0, 0, 0, 0.2);
+        font-family: Red hat Display, sans-serif;
+        font-weight: 400;
+        letter-spacing: 0.025em;
+      }
+      .chat .input input:placeholder {
+        color: #999;
+      }
+      .pic.nitk {
+        background-image: url({{ url_for('static', filename='images/nitk.jpeg') }})
+      }
 
-</div>
--->
+      .top-header{
+        display: flex;
+        margin: 10px 0px 10px 0px;
+      }
 
-<!--
-<div class="hero-image">
-    <button class="openbtn" onclick="openNav()">☰ </button>
-    <div class="hero-text">
-    <h1 style="font-size:50px">Innovate Yourself</h1>
-    <p>Observe.Learn.Innovate</p>
-    <button>Hire me</button>
-  </div>
-</div>
--->
+      .name-seen-container{
+        margin: auto auto auto 20px;
+      }
 
+      .name {
+        font-size: 1.2rem;
+        color: #111;
+      }
 
+      .seen {
+        font-size: 0.9rem;
+        color: #999;
+      }
 
-<script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5lcqd4reJesiCIC1HR3eQtaTUXtc6HCU&callback=initMap&libraries=&v=weekly"
-      defer
-    ></script>
+      .about{
+        margin: auto 0 auto auto;
+      }
+
+      .about-button{
+        padding: 0.5rem 1rem;
+        border-color: gray;
+        border-radius: 1.125rem;
+        font-family: Red hat Display, sans-serif;
+        background-color: white;
+        font-size: 1rem;
+      }
+
+      .send{
+        padding: 0.5rem 1rem;
+        border-radius: 1.125rem;
+        border-color: gray;
+        font-family: Red hat Display, sans-serif;
+        font-weight: 400;
+        letter-spacing: 0.025em;
+      }
+
+      .send:focus , .about-button:focus{
+        outline: 0;
+      }
+
+      #wrap{
+          position: absolute;
+          top: 0; right: 0; bottom: 0; left: 0;
+          border: 15px;
+      }
+      #map {
+          height: 300px;
+          width: 100%;
+          clear: both;
+      }
+      #myForm {
+        display: block;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5lcqd4reJesiCIC1HR3eQtaTUXtc6HCU&callback=initMap&libraries=&v=weekly" defer></script>
+    
     <script>
+
       // Initialize and add the map
       var lat = {{latitude}};
       var lng = {{longitude}};
       function initMap() {
+        
         // The location of Uluru
         const uluru = { lat: lat,  lng: lng };
+            
         // The map, centered at Uluru
         const map = new google.maps.Map(document.getElementById("map"), {
           zoom: 4,
@@ -540,123 +213,78 @@ body, html {
           map: map,
         });
       }
-</script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
-<input type="image" src="https://cdn2.iconfinder.com/data/icons/ios7-inspired-mac-icon-set/1024/messages_5122x.png" class="open-button" onload="openForm()" onclick="openForm()"  />
-<div id = "wrap">
-  <div id="map"></div>
-  <div class="chat-popup" id="myForm">
-  <!--<form class="form-container" id="chat-data" action="/result" method="POST"></form>-->
-    <form  id="chat-data" action = "/result"  method="POST"> 
-    
-        <div class="chat">
-    <div class="contact bar">
-      <div class="pic stark"></div>
-      <div class="name">
-        NITK chatbot &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <!--<a href="javascript:void(0)" class="closebtn" onclick="closeChat()">×</a>-->
+    </script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+
+    <div id="wrap">
+
+      <div id="map"></div>
+
+      <div class="chat-popup" id="myForm">
+
+        <form  id="chat-data" action="/result" method="POST">
+          <div class="chat">
+            <div class="top-header">
+
+              <div class="pic nitk"></div>
+              <div class="name-seen-container">
+                <div class="name">
+                  NITK chatbot 
+                </div>
+                <div class="seen">
+                  Online 
+                </div>
+              </div>
+
+              <a class="about" href="{{ url_for('about_page') }}" target="_top">
+                <button type="button" class="about-button">
+                  About &#10068;
+                </button>
+              </a>
+
+            </div>
+
+            <div class="messages" id="chat">
+
+              {% for key,value in result%}
+              {% if key == 'image' %}
+
+              <div class="message">
+                <img src="{{value}}">
+              </div>
+
+              {% else %}
+
+              <div class="{{key}}">
+              {{value}}
+              </div>
+
+              {% endif %}  
+              {% endfor %} 
+
+            </div>
+
+            <div class="input">
+              <input placeholder="Type your message here!" type="text" name="msg" />
+              <button type="submit"  class="send">send &#10146;</button>
+            </div>
+
+          </div>
+        </form>
+
       </div>
-
-      <div class="seen">
-        Online
-
-      </div>
     </div>
-    <div class="messages" id="chat">
-      
-      {% for key,value in result%}
-      {% if key == 'image' %}
-      <div class="message stark">
-        <img src="{{value}}">
-        </div>
-      {% else %}
-        <div class="{{key}}">
-        {{value}}
-        </div>
-      {% endif %}  
-      {% endfor %}
-       
-    </div>
-    <div class="input">
-      <!--<i class="fas fa-camera"></i><i class="far fa-laugh-beam"></i><input placeholder="Type your message here!" type="text" name="msg" /><button type="button" id="out" onclick="loadDoc()">send</button><i class="fas fa-microphone"></i>-->
-      <i class="fas fa-camera"></i><i class="far fa-laugh-beam"></i><input placeholder="Type your message here!" type="text" name="msg" /><button type="submit"  id="out"  >send</button><i class="fas fa-microphone"></i>
-    </div>
-   </div>
-  </form>
-  </div>
-  
-</div>
 
+    <script>
 
+      var chat = document.getElementById("chat");
+      chat.scrollTop = chat.scrollHeight - chat.clientHeight;
 
+      window.scrollTo(0,document.body.scrollHeight);
 
-<script>
+    </script>
 
-function openNav() {
-  document.getElementById("mySidebar").style.width = "200px";
-  document.getElementById("main").style.marginLeft = "200px";
-}
-function openChat() {
-  document.getElementById("myForm").style.width = "400px";
-  document.getElementById("main").style.marginLeft = "200px";
-}
+  </body>
 
-function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
-}
-function closeChat() {
-  document.getElementById("myForm").style.display = "none";
-  document.getElementById("main").style.marginLeft= "0";
-}
-
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
-
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
-var chat = document.getElementById("chat");
-chat.scrollTop = chat.scrollHeight - chat.clientHeight;
-
-
-function loadDoc() {
-    var fields = $( ":input" ).serializeArray();
-    //console.log(fields);
-    $( "#results" ).empty();
-    jQuery.each( fields, function( i, field ) {
-      console.log(field.value);
-      //$( "#results" ).append( field.value + " " );
-      $.post( "/result", {
-    javascript_data: field.value+" "
-});
-    });
-    refreshMessages();
-    //console.log($("#chat").html())
-    
-    
-    // TODO: The rest of the code will go here...
-}
-
-function refreshMessages() {
-  
-  $.ajax({
-    url: 'chat.php',
-    type: 'GET',
-    dataType: 'html',
-    success: function(data) {
-      
-      $('#chat').html(data); // data came back ok, so display it                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              $('#chat').html(data); // data came back ok, so display it
-    },
-    error: function() {
-      $('#chat').prepend('Error retrieving new messages..');
-    }
-  });
-
-  
-}
-
-</script>
-
-</body>
+</html>
