@@ -2,20 +2,24 @@ import json,time
 from flask import Flask, render_template, request, jsonify, Response
 import requests
 import base64,cv2
+from map_embedding import embed
 
 
 app=Flask(__name__)
 output=[]
 
-lat = []
-lng = []
 
+map = []
 
 def defaultCoordinates():
     lat.append(13.010992210852605)
     lng.append(74.79431669717836)
+    # coordinates of NITK Surathkal
+    
+    map.append(embed["NITKSurathkal"])
 
 defaultCoordinates()
+
 def getCoordinates(location):
     
     map = {
@@ -47,11 +51,14 @@ def getCoordinates(location):
 
     lat.append(map[location][0])
     lng.append(map[location][1])
+    map.append(embed[location])
     
+    
+
     
 @app.route('/')
 def home_page():
-    return render_template("IY_Home_page.html",result=output,latitude = lat[-1], longitude = lng[-1])
+    return render_template("IY_Home_page.html",result=output,embed_map = map[-1])
 @app.route('/about')
 def about_page():
     return render_template("about.html",result=output)
@@ -100,7 +107,7 @@ def Result():
                 output.extend([("message user", result), ("message bot", "We are unable to process your request at the moment. Please try again...")])
         print(lat) 
         print(output)
-        return render_template("IY_Home_page.html",result=output,latitude=lat[-1],longitude = lng[-1])
+        return render_template("IY_Home_page.html",result=output,embed_map = map[-1])
 
 if __name__=="__main__":
     app.run(debug=True)#,host="192.168.43.161")
