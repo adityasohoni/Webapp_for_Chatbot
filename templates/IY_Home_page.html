@@ -55,6 +55,7 @@
         flex-direction: column;
         -webkit-box-pack: justify;
         justify-content: space-between;
+
         width: 100%;
         height: 43rem;
         z-index: 10000;
@@ -190,36 +191,20 @@
 
   <body>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5lcqd4reJesiCIC1HR3eQtaTUXtc6HCU&callback=initMap&libraries=&v=weekly" defer></script>
     
-    <script>
-
-      // Initialize and add the map
-      var lat = {{latitude}};
-      var lng = {{longitude}};
-      function initMap() {
-        
-        // The location of Uluru
-        const uluru = { lat: lat,  lng: lng };
-            
-        // The map, centered at Uluru
-        const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 4,
-          center: uluru,
-        });
-        // The marker, positioned at Uluru
-        const marker = new google.maps.Marker({
-          position: uluru,
-          map: map,
-        });
-      }
-    </script>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
 
     <div id="wrap">
 
-      <div id="map"></div>
+      <div id="map">
+        <iframe id = "destination" src= "" width="100%" height = "100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+      <script>
+        let iframe = document.getElementById("destination");
+        let url = '{{embed_map}}';
+        iframe.src = url;
+      </script>
 
       <div class="chat-popup" id="myForm">
 
