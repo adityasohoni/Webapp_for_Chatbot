@@ -43,11 +43,16 @@
       }
 
       .large-font {
-        font-size: 48px;
+        font-size: 40px;
       }
 
       .xlarge-font {
         font-size: 64px
+      }
+      .medium-font{
+        font-size: 20px;
+        word-spacing: 5px;
+        line-height: 1.5;
       }
 
       .button {
@@ -62,21 +67,27 @@
       .card {
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
         transition: 0.3s;
-        width: 50%;
+        width: 100%;
         text-align: center;
+      }
+
+      .name-pair{
+        display: flex;
       }
 
       .card:hover {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
       }
 
-      @media screen and (max-width: 1000px) {
-        .card,
+      @media screen and (max-width: 900px) {
         .column-33,
         .column-66,
         .column-100 {
           width: 100%;
           text-align: center;
+        }
+        .name-pair {
+          display: block;
         }
         img {
           margin: auto;
@@ -100,7 +111,7 @@
             <b>What is it?</b>
           </h1>
           
-          <p> The NITK ChatBot is a Virtual Assistant to guide you through out NITK.</p>
+          <p class="medium-font"> The NITK ChatBot is a Virtual Assistant to guide you through NITK and to help you find the various facilities available in the campus</p>
           
           <a class="about" href="{{ url_for('home_page') }}" target="_top">
             <button class="button">Open ChatBot</button>
@@ -119,7 +130,7 @@
             <b>How does it work ?</b>
           </h1>
           
-          <p>You can ask the bot about various Facilities available in and around NITK</p>
+          <p class="medium-font">You can ask the bot about various facilities available in and around NITK. You can ask about food, snacks, transcripts, departments and much more.</p>
           
           <a class="about" href="{{ url_for('home_page') }}" target="_top">
             <button class="button">Try It Out</button>
@@ -138,55 +149,55 @@
             <b>Team</b>
           </h1>
           
-          <div style="display: flex;">
+          <div class="name-pair">
             
             <div class="card">
               <div class="container">
-                <h4><b>Aditya</b></h4> 
-                <p>Architect & Engineer</p> 
+                <h4><b>Aditya Sohoni</b></h4> 
+                <p>adityasohoni@gmail.com</p> 
               </div>
             </div>
             
             <div class="card">
               <div class="container">
-                <h4><b>Shruthan</b></h4> 
-                <p>Architect & Engineer</p> 
-              </div>
-            </div>
-
-          </div>
-
-          <div style="display: flex;">
-            
-            <div class="card">
-              <div class="container">
-                <h4><b>Varun</b></h4> 
-                <p>Architect & Engineer</p> 
-              </div>
-            </div>
-            
-            <div class="card">
-              <div class="container">
-                <h4><b>Rakshit</b></h4> 
-                <p>Architect & Engineer</p> 
+                <h4><b>Shruthan R</b></h4> 
+                <p>shruthan@outlook.com</p> 
               </div>
             </div>
 
           </div>
 
-          <div style="display: flex;">
+          <div class="name-pair">
             
             <div class="card">
               <div class="container">
-                <h4><b>Pratham</b></h4> 
-                <p>Architect & Engineer</p> 
+                <h4><b>Varun NR</b></h4> 
+                <p>varun.raghavendra1@gmail.com</p> 
+              </div>
+            </div>
+            
+            <div class="card">
+              <div class="container">
+                <h4><b>Rakshit P</b></h4> 
+                <p>rakshit.191cs147@nitk.edu.in</p> 
+              </div>
+            </div>
+
+          </div>
+
+          <div class="name-pair">
+            
+            <div class="card">
+              <div class="container">
+                <h4><b>Pratham Nayak</b></h4> 
+                <p>nayakpratham0@gmail.com</p> 
               </div>
             </div>
 
             <div class="card">
               <div class="container">
-                <h4><b>Dharmik</b></h4> 
-                <p>Architect & Engineer</p> 
+                <h4><b>K Dharmik Sai</b></h4> 
+                <p>kdharmicksai.191cs221@nitk.edu.in</p> 
               </div>
             </div>
 
